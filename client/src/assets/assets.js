@@ -42,7 +42,7 @@ import car_image3 from "./car_image3.png"
 import car_image4 from "./car_image4.png"
 import fav1 from "./fav1.png"
 
-export const cityList = ['New York', 'Los Angeles', 'Houston', 'Chicago']
+export const cityList = ['India','New York', 'Los Angeles', 'Houston', 'Chicago']
 
 export const assets = {
     fav1,
@@ -105,7 +105,7 @@ export const ownerMenuLinks = [
 
 export const dummyUserData = {
   "_id": "6847f7cab3d8daecdb517095",
-  "name": "GreatStack",
+  "name": "Shanedra Singh",
   "email": "admin@example.com",
   "role": "owner",
   "image": user_profile,
