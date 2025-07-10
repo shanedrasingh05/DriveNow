@@ -102,15 +102,20 @@ const Footer = () => {
 
       <hr className="border-y-gray-700 mt-8 " />
       <div className="flex flex-col md:flex-row gap-2 items-center justify-between py-5">
-        <p>
-          © {new Date().getFullYear()}{" "}
-          <span style={{ fontSize: "13px", fontFamily: "Arial" }}>
-            <span style={{ color: "#4FBF8B" }}>Ḓ</span>
-            <span style={{ color: "#000000" }}>riveNow</span>
-          </span>
-          . All rights reserved || This site developed by{" "}
-          <b>{"Shanedra Singh "}</b>
+        <p className="text-center text-sm text-gray-500 mt-1">
+          © {new Date().getFullYear()} All rights reserved || This site
+          developed by{" "}
+          <a
+            href="https://www.linkedin.com/in/shanedrasingh05"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-primary hover:underline"
+          >
+            Shanedra Singh
+          </a>
         </p>
+
+      
 
         <ul className="flex items-center text-sm text-gray-600">
           {["Privacy", "Terms", "Cookies"].map((label, index, arr) => (
@@ -124,8 +129,6 @@ const Footer = () => {
             </li>
           ))}
         </ul>
-
-        
       </div>
     </div>
   );
