@@ -33,7 +33,8 @@ const Testimonial = () => {
 
   return (
     
-    <div className="py-28 px-6 md:px-16 lg:px-24 xl:px-44">
+    <div className="flex flex-col items-center justify-center text-center space-y-2 max-md:px-20 md:px-4 px-4 py-10 mb-40">
+    {/* <div className="py-28 px-6 md:px-16 lg:px-24 xl:px-44"> */}
       <Title
         title="What Our Customers Say"
         subTitle="Discover why discerning travelers choose StayVenture for their luxury accommodations around the world."
