@@ -8,6 +8,11 @@ const CarDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
+  const currency = import.meta.env.VITE_CURRENCY;
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+  }
 
   useEffect(() => {
     setCar(dummyCarData.find((car) => car._id === id));
@@ -110,7 +115,68 @@ const CarDetails = () => {
         </div>
 
         {/* Right: Booking form */}
-        <form action=""></form>
+
+        <form onSubmit={handleSubmit}
+        className="shadow-xl h-max sticky top-20 rounded-2xl p-6 space-y-6 bg-white text-gray-600">
+          {/* Price Section */}
+          <div className="flex items-center justify-between">
+            <p className="text-3xl font-bold text-gray-900">
+              {currency}
+              {car.pricePerDay}
+            </p>
+            <span className="text-sm text-gray-400 font-medium">per day</span>
+          </div>
+
+          <hr className="border-gray-200" />
+
+          {/* Pickup Date */}
+          <div>
+            <label
+              htmlFor="pickup-date"
+              className="block text-sm font-medium mb-1"
+            >
+              Pickup Date
+            </label>
+            <input
+              type="date"
+              id="pickup-date"
+              required
+              min={new Date().toISOString().split("T")[0]}
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200"
+            />
+          </div>
+
+          {/* Return Date */}
+          <div>
+            <label
+              htmlFor="return-date"
+              className="block text-sm font-medium mb-1"
+            >
+              Return Date
+            </label>
+            <input
+              type="date"
+              id="return-date"
+              required
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200"
+            />
+          </div>
+
+          {/* Book Button */}
+          <button
+            
+            className="w-full bg-blue-600 text-white py-3 rounded-lg text-sm font-semibold tracking-wide hover:bg-black transition-all duration-200"
+          >
+            Book Now
+          </button>
+
+          {/* Note */}
+          <p className="text-center text-xs text-gray-400">
+            No credit card required to reserve
+          </p>
+        </form>
+
+      
       </div>
     </div>
   ) : (
