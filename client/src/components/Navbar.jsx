@@ -13,7 +13,7 @@ const Navbar = ({ setShowLogin }) => {
       <div
         className={`fixed top-0 left-0 w-full z-50 bg-gray-100 border-b border-borderColor 
           flex items-center justify-between px-6 py-4 sm:px-16 lg:px-24 xl:px-32 
-          text-gray-600 transition-all duration-300 shadow-xl`}
+          text-gray-600 transition-all duration-300 `}
       >
         {/* Logo */}
         <Link to="/">
