@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useEffect, useState } from 'react'
 import { assets, dummyMyBookingsData } from '../assets/assets'
 import Title from '../components/Title'
@@ -5,6 +9,8 @@ import Title from '../components/Title'
 const MyBookings = () => {
 
   const [booking, setBooking] = useState([])
+  const currency = import.meta.env.VITE_CURRENCY;
+  
 
   const fetchMyBookings = async () => {
     setBooking(dummyMyBookingsData)
@@ -68,14 +74,14 @@ const MyBookings = () => {
                 </p>
               </div>
 
-              <div className='flex items-start gap-2 mt-3'>
+              <div className="flex items-start gap-2 mt-3">
                 <img
                   src={assets.calendar_icon_colored}
                   alt=""
                   className="w-4 h-4 mt-1"
                 />
                 <div>
-                  <p className='text-gray-500'>Rental Period</p>
+                  <p className="text-gray-500">Rental Period</p>
                   <p>
                     {booking.pickupDate.split("T")[0]} To{" "}
                     {booking.returnDate.split("T")[0]}{" "}
@@ -83,23 +89,31 @@ const MyBookings = () => {
                 </div>
               </div>
 
-
-              <div className='flex items-start gap-2 mt-3'>
+              <div className="flex items-start gap-2 mt-3">
                 <img
                   src={assets.location_icon_colored}
                   alt=""
                   className="w-4 h-4 mt-1"
                 />
                 <div>
-                  <p className='text-gray-500'>Pick-up Location</p>
+                  <p className="text-gray-500">Pick-up Location</p>
                   <p>{booking.car.location}</p>
                 </div>
               </div>
             </div>
 
             {/* booking price */}
+            <div className="md:col-span-1 flex flex-col justify-self-endJ items-end gap-2 ">
+              <p className="text-sm text-gray-500">Total Price</p>
+              <h1 className="text-2xl font-semibold text-blue-600">
+                {currency}
+                {booking.price}
+              </h1>
+              <p className="text-sm text-gray-400">
+                Booked on {booking.createdAt.split("T")[0]}
+              </p>
+            </div>
 
-                  
 
           </div>
         ))}
