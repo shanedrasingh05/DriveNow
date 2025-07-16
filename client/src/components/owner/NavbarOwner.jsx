@@ -30,7 +30,7 @@ const NavbarOwner = () => {
           </text>
         </svg>
       </Link>
-      <p>Welcome, {user.name || "Owner"}</p>
+      <p className='font-semibold'>Welcome, {user.name || "Owner"}</p>
     </div>
   );
 }

@@ -58,23 +58,33 @@ const MyBookings = () => {
             {/* booking info */}
 
             <div className="md:col-span-2">
-              <div className="flex items-center gap-2">
-                <p className="px-3 py-1.5 border bg-light rounded">
-                  Booking #{index + 1}
-                </p>
+              <div className="flex w-full justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="px-3 py-1.5 border bg-light rounded">
+                    Booking #{index + 1}
+                  </p>
 
-                <p
-                  className={`px-3 py-1 text-xs rounded-full ${
-                    booking.status === "confirmed"
-                      ? "bg-green-400/15 text-green-600"
-                      : "bg-red-400/15 text-red-600"
-                  }`}
-                >
-                  {booking.status}
-                </p>
+                  <p
+                    className={`px-3 py-1 text-xs rounded-full ${
+                      booking.status === "confirmed"
+                        ? "bg-green-400/15 text-green-600"
+                        : "bg-red-400/15 text-red-600"
+                    }`}
+                  >
+                    {booking.status}
+                  </p>
+                </div>
+                <div className="md:col-span-1 flex flex-col justify-self-end items-end gap-2 ">
+                  <p className="text-sm text-gray-500">Total Price</p>
+                  <h1 className="text-2xl font-semibold text-blue-600">
+                    {currency}
+                    {booking.price}
+                  </h1>
+                </div>
               </div>
 
-              <div className="flex items-start gap-2 mt-3">
+              <div className="flex justify-between w-full gap-2 mt-3">
+                <div className="flex gap-2">
                 <img
                   src={assets.calendar_icon_colored}
                   alt=""
@@ -87,6 +97,10 @@ const MyBookings = () => {
                     {booking.returnDate.split("T")[0]}{" "}
                   </p>
                 </div>
+                </div>
+                <p className="text-sm text-gray-400">
+                    Booked on {booking.createdAt.split("T")[0]}
+                </p>
               </div>
 
               <div className="flex items-start gap-2 mt-3">
@@ -98,12 +112,13 @@ const MyBookings = () => {
                 <div>
                   <p className="text-gray-500">Pick-up Location</p>
                   <p>{booking.car.location}</p>
+                  
                 </div>
               </div>
             </div>
 
             {/* booking price */}
-            <div className="md:col-span-1 flex flex-col justify-self-endJ items-end gap-2 ">
+            {/* <div className="md:col-span-1 flex flex-col justify-self-endJ items-end gap-2 ">
               <p className="text-sm text-gray-500">Total Price</p>
               <h1 className="text-2xl font-semibold text-blue-600">
                 {currency}
@@ -112,9 +127,7 @@ const MyBookings = () => {
               <p className="text-sm text-gray-400">
                 Booked on {booking.createdAt.split("T")[0]}
               </p>
-            </div>
-
-
+            </div> */}
           </div>
         ))}
       </div>
