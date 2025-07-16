@@ -44,5 +44,5 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/drivenow.git
+git clone https://github.com/shanedrasingh05/DriveNow.git
 cd drivenow
