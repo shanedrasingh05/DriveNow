@@ -34,7 +34,7 @@ const isOwnerPath = useLocation().pathname.startsWith('/owner');
       <Route path="/owner" element={<Layout />} >
       <Route index element={<DashBoard />} />
       <Route path='add-car' element={<AddCar />} />
-      <Route path='manage-car' element={<ManageCars />} />
+      <Route path='manage-cars' element={<ManageCars />} />
       <Route path='manage-bookings' element={<ManageBookings />} />
 
       </Route>
