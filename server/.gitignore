@@ -1,0 +1,9 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+.env
+
+homework.md
+Apilist.md
