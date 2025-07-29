@@ -8,6 +8,9 @@ const connectDB = async () => {
 export default connectDB;
 
 
+
+
+
 // app.get("/", (req, res) => res.send("Server is running"));
 
 // const PORT = process.env.PORT || 3000;

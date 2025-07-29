@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
-import connectDB from "./config/db.js"; // ✅ Add `.js` if using ES Modules
+import connectDB from "./config/db.js"; 
 
 // Initialize Express App
 const app = express();
@@ -16,16 +16,16 @@ app.get("/", (req, res) => {
 });
 
 // Connect to MongoDB and Start Server
-connectDB()
+ connectDB()
   .then(() => {
-    console.log("✅ MongoDB Connected...");
+    console.log("MongoDB Connected...");
 
     const port = process.env.PORT || 3000;
     app.listen(port, () => {
-      console.log(`🚀 Server running on port ${port}`);
+      console.log(`Server running on port ${port}`);
     });
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection failed:", err.message);
-    process.exit(1); // Exit process if DB connection fails
+    console.error("MongoDB connection failed:", err.message);
+    process.exit(1); 
   });
