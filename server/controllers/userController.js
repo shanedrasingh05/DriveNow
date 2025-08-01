@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 
 
@@ -7,9 +7,11 @@ import bcrypt from "bcryptjs";
 
 const  generateToken = (userId) =>{
     const payload =userId
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "7d" });
+    // const payload = { id: userId };
+    return jwt.sign(payload, process.env.JWT_SECRET);
 }
 
+// Register User
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -31,11 +33,56 @@ export const registerUser = async (req, res) => {
 
     const token = generateToken(user._id.toString());
 
-    res.json({ success: true, token });
+    res.json({ message: "User registered successfully", success: true, token });
 
    
   } catch (error) {
     // ... (error handling)
-    console.log(error);
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
   }
 };
+
+
+
+// User login
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.json({ success: false, message: "Invalid Credentials" });
+    }
+    const token = generateToken(user._id.toString());
+    res.json({message: "User logged in successfully", success: true, token });
+
+
+
+  } catch (error) {
+    // Handle potential errors
+     console.log(error.message);
+     res.json({ success: false, message: error.message });
+  }
+};
+
+
+// Get user Data using jwt token
+
+export const getUserData = async (req, res) => {
+  try {
+    const { user } = req;
+    res.json({ success: true, user });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
+
+
