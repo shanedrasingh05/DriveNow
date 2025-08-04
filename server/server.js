@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js"; 
 import userRouter from "./routes/userRoutes.js";
 import ownerRouter from "./routes/ownerRoutes.js";
+import bookingRouter from "./routes/bookingRoutes.js";
 
 // Initialize Express App
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use('/api/user', userRouter)
 app.use('/api/owner', ownerRouter)
+app.use('/api/bookings', bookingRouter)
 
 // Connect to MongoDB and Start Server
  connectDB()
