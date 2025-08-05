@@ -4,29 +4,27 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext.jsx";
 import toast from "react-hot-toast";
 
-
 const Navbar = () => {
-
-  const { setShowLogin, user, logout, isOwner, axios, setIsOwner } = useAppContext();
-
+  const { setShowLogin, user, logout, isOwner, axios, setIsOwner } =
+    useAppContext();
 
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const changeRole = async () => {
-  try {
-    const { data } = await axios.post('/api/owner/change-role');
-    if (data.success) {
-      setIsOwner(true);
-      toast.success(data.message);
-    } else {
-      toast.error(data.message);
+    try {
+      const { data } = await axios.post("/api/owner/change-role");
+      if (data.success) {
+        setIsOwner(true);
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
-  } catch (error) {
-    toast.error(error.message);
-  }
-};
+  };
 
   return (
     <>
@@ -121,4 +119,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
