@@ -1,10 +1,11 @@
 import React from 'react'
-import { dummyUserData } from '../../assets/assets'
+import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext';
 
 const NavbarOwner = () => {
 
-    const user = dummyUserData;
+    const {user} = useAppContext()
 
   return (
     <div
@@ -30,7 +31,7 @@ const NavbarOwner = () => {
           </text>
         </svg>
       </Link>
-      <p className='font-semibold'>Welcome, {user.name || "Owner"}</p>
+      <p className='font-semibold'>Welcome, {user?.name || "Owner"}</p>
     </div>
   );
 }

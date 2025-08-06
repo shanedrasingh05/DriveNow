@@ -1,19 +1,37 @@
 import React, { useState } from 'react'
-import { assets, dummyUserData, ownerMenuLinks } from '../../assets/assets';
+import { assets, ownerMenuLinks } from '../../assets/assets';
 import { Link, NavLink, useLocation } from 'react-router-dom';   
+import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
+
+
 
 const Sidebar = () => {
 
-    const user = dummyUserData;
+    const {user, axios, fetchUser} = useAppContext()  
 
     const location = useLocation();
 
     const [image, setImage] = useState('');
 
-    const updateImage = async ()=>{
-        user.image = URL.createObjectURL(image);
-        setImage('');
-    }
+    const updateImage = async () => {
+      try {
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const { data } = await axios.post("/api/owner/update-image", formData);
+
+        if (data.success) {
+          fetchUser();
+          toast.success(data.message);
+          setImage("");
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+    };
 
   return (
     <div
@@ -30,7 +48,7 @@ const Sidebar = () => {
                   "https://images.unsplash.com/photo-1633327555192-727a05c4013d?q=80&w=300" // Fallback default image
             }
             alt=""
-            className='h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto'
+            className="h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto"
           />
           <input
             type="file"
@@ -50,14 +68,11 @@ const Sidebar = () => {
       </div>
 
       {image && (
-        <button className="absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer">
-          Save{" "}
-          <img
-            src={assets.check_icon}
-            width={13}
-            alt=""
-            onClick={updateImage}
-          />
+        <button
+          className="absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer"
+          onClick={updateImage}
+        >
+          Save <img src={assets.check_icon} width={13} alt="" />
         </button>
       )}
 
@@ -65,7 +80,6 @@ const Sidebar = () => {
 
       <div className="w-full">
         {ownerMenuLinks.map((link, index) => (
-
           <NavLink
             key={index}
             to={link.path}
@@ -91,7 +105,6 @@ const Sidebar = () => {
             ></div>
           </NavLink>
         ))}
-
       </div>
     </div>
   );
