@@ -3,6 +3,7 @@ import User from "../models/User.js"
 
 
 export const protect = async (req, res, next) => {
+  console.log("protect")
   const token = req.headers.authorization;
   if (!token) {
     return res.json({ success: false, message: "not authorized" });
@@ -15,6 +16,7 @@ export const protect = async (req, res, next) => {
 
     req.user = await User.findById(userId).select("-password");
     next();
+    console.log("protect next")
 
   } catch (error) {
     return res.json({ success: false, message: "not authorized" });

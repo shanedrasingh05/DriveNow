@@ -23,6 +23,9 @@ app.use('/api/user', userRouter)
 app.use('/api/owner', ownerRouter)
 app.use('/api/bookings', bookingRouter)
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Connect to MongoDB and Start Server
  connectDB()
   .then(() => {

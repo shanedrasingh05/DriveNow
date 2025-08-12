@@ -4,6 +4,7 @@ import Booking from "../models/Booking.js";
 import fs from "fs"
 import imagekit from "../config/imageKit.js"
 
+
 export const changeRoleToOwner = async (req, res) => {
   try {
     const { _id } = req.user;
@@ -17,11 +18,66 @@ export const changeRoleToOwner = async (req, res) => {
 
 // API to list Car
 
+// export const addCar = async (req, res) => {
+//   try {
+//     const { _id } = req.user;
+//     console.log(req.body);
+
+//     // Check if carData exists
+//     if (!req.body.carData) {
+//       return res
+        
+//         .json({ success: false, message: "Missing carData in request body" });
+//     }
+
+//     // Try parsing carData as JSON
+//     let car;
+//     try {
+//       car = JSON.parse(req.body.carData);
+//     } catch (e) {
+//       return res
+//         .json({ success: false, message: "carData is not valid JSON" });
+//     }
+
+//     const imageFile = req.file;
+
+//     // Upload Image to ImageKit
+//     const fileBuffer = fs.readFileSync(imageFile.path);
+//     const response = await imagekit.upload({
+//       file: fileBuffer,
+//       fileName: imageFile.originalname,
+//       folder: "/cars",
+//     });
+
+//     // Optimization through imagekit URL transformation
+//     var optimizedImageUrl = imagekit.url({
+//       path: response.filePath,
+//       transformation: [
+//         { width: "1280" },
+//         { quality: "auto" },
+//         { format: "webp" },
+//       ],
+//     });
+
+//     const image = optimizedImageUrl;
+//     await Car.create({ ...car, owner: _id, image });
+//     res.json({ success: true, message: "Car Added" });
+//   } catch (error) {
+//     console.log(error);
+//     console.log(error.message);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
+
+
+    // own code
 export const addCar = async (req, res) => {
   try {
     const { _id } = req.user;
+    console.log(req.body);
     let car = JSON.parse(req.body.carData);
     const imageFile = req.file;
+    console.log("Hello")
 
     // Upload Image to ImageKit
     const fileBuffer = fs.readFileSync(imageFile.path);
@@ -47,15 +103,11 @@ export const addCar = async (req, res) => {
       ],
     });
 
-
     const image = optimizedImageUrl;
     await Car.create({ ...car, owner: _id, image });
     res.json({ success: true, message: "Car Added" });
-
-    
-
-
   } catch (error) {
+    console.log(error);
     console.log(error.message);
     res.json({ success: false, message: error.message });
   }
