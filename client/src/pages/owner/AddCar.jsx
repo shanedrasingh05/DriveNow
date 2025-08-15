@@ -32,10 +32,42 @@ const onSubmitHandler = async (e) => {
 
   setIsLoading(true);
   try {
-    const formData = new FormData();
-    // formData.append("image", image);
 
-    console.log("formData : " ,formData)
+     if(
+car.brand == "" ||
+car.model == "" ||
+car.year == "" ||
+car.pricePerDay == "" ||
+car.category == "" ||
+car.transmission == "" ||
+car.fuel_type == "" ||
+car.seating == "" ||
+car.location == "" ||
+car.description == "" ||
+image == null
+    ){
+      toast.error("All fields required");
+      setIsLoading(true);
+      return null;
+    }
+
+const formData = new FormData();
+
+formData.append("image", image); // file
+
+formData.append("brand", car.brand);
+formData.append("model", car.model);
+formData.append("year", Number(car.year)); // ensure number here
+formData.append("seating_capacity", Number(car.seating_capacity));
+formData.append("pricePerDay", Number(car.pricePerDay));
+formData.append("category", car.category);
+formData.append("transmission", car.transmission);
+formData.append("fuel_type", car.fuel_type);
+formData.append("location", car.location);
+formData.append("description", car.description);
+    // validate
+   
+
     const { data } = await axios.post("/api/owner/add-car", formData);
 
     if (data.success) {
