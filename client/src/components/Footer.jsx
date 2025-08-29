@@ -1,28 +1,22 @@
 import React from 'react'
 import { assets } from '../assets/assets';
 
+import {Link} from "react-router-dom"
+
 const Footer = () => {
   return (
     <div className="text-gray-500/80 pt-8 px-6 md:px-16 lg:px-24 xl:px-32 text-sm ">
       <div className="flex flex-wrap justify-between gap-12 md:gap-6">
         <div className="max-w-80">
-          <svg
-            className="h-10 md:h-9  items-start"
-            viewBox="0 0 300 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              x="50%"
-              y="50%"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              fontSize="48"
-              fontFamily="Arial"
-            >
-              <tspan fill="#4FBF8B">Ḓ</tspan>
-              <tspan fill="#000000">riveNow</tspan>
-            </text>
-          </svg>
+
+          <Link to="/">
+         <img
+         className="h-14 w-auto"
+         src="/logo.png"
+          alt="Logo"
+          />
+          </Link>
+        
           <p className="max-w-80 mt-3">
             Experience premium car rental with a diverse fleet of luxury and
             everyday vehicles tailored for all your driving needs.

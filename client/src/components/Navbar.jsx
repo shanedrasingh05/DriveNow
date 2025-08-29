@@ -34,9 +34,18 @@ const Navbar = () => {
           flex items-center justify-between px-6 py-4 sm:px-16 lg:px-24 xl:px-32 
           text-gray-600 transition-all duration-300 `}
       >
-        {/* Logo */}
-        <Link to="/">
-          <svg
+       {/* Logo */}
+<Link to="/">
+  <img
+    className="h-9 w-auto"
+    src="/logo.png"
+    alt="Logo"
+  />
+</Link>
+
+
+
+          {/* <svg
             className="h-9 w-auto"
             viewBox="0 0 300 100"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +61,8 @@ const Navbar = () => {
               <tspan fill="#4FBF8B">Ḓ</tspan>
               <tspan fill="#000000">riveNow</tspan>
             </text>
-          </svg>
-        </Link>
+          </svg> */}
+        
 
         {/* Menu Links */}
         <div
