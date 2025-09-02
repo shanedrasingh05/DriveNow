@@ -98,8 +98,6 @@ export const toggleCarAvailability = async (req, res) => {
     await car.save();
 
     res.json({ success: true, message: "Availability Toggled" });
-
-    res.json({ success: true, cars });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
@@ -114,19 +112,26 @@ export const deleteCar = async (req, res) => {
     const { _id } = req.user;
     const { carId } = req.body;
     const car = await Car.findById(carId);
-
+    if(!car){
+      return res.json({sucess: false, message: "Car is not found"})
+    }
+    
     // Checking if car belongs to the user
     if (car.owner.toString() !== _id.toString()) {
       return res.json({ success: false, message: "Unauthorized" });
     }
-
-    car ==null
-    car.isAvaliable = false;
-    await car.save();
-
+    
+    await Car.findByIdAndDelete(carId);
+    
     res.json({ success: true, message: "Car Removed" });
 
-    res.json({ success: true, cars });
+
+    // car = null
+    // car.isAvaliable = false;
+    // await car.save();
+
+
+    // res.json({ success: true, car });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
