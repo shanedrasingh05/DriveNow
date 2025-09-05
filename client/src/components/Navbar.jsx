@@ -3,6 +3,7 @@ import { assets, menuLinks } from "../assets/assets.js";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext.jsx";
 import toast from "react-hot-toast";
+import { motion } from "motion/react";
 
 const Navbar = () => {
   const { setShowLogin, user, logout, isOwner, axios, setIsOwner } =
@@ -27,44 +28,22 @@ const Navbar = () => {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {/* Fixed Navbar */}
       <div
         className={`fixed top-0 left-0 w-full z-50 bg-gray-100 border-b border-borderColor 
           flex items-center justify-between px-6 py-4 sm:px-16 lg:px-24 xl:px-32 
           text-gray-600 transition-all duration-300 `}
       >
-       {/* Logo */}
-<Link to="/">
-  <img
-    className="h-9 w-auto"
-    src="/logo.png"
-    alt="Logo"
-  />
-</Link>
-
-
-
-          {/* <svg
-            className="h-9 w-auto"
-            viewBox="0 0 300 100"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <text
-              x="50%"
-              y="50%"
-              dominantBaseline="middle"
-              textAnchor="middle"
-              fontSize="48"
-              fontFamily="Arial"
-            >
-              <tspan fill="#4FBF8B">Ḓ</tspan>
-              <tspan fill="#000000">riveNow</tspan>
-            </text>
-          </svg> */}
-        
-
-        {/* Menu Links */}
+        {/* Logo */}
+        <Link to="/">
+          <img 
+          className="h-9 w-auto" src="/logo.png" alt="Logo" />
+        </Link>
         <div
           className={`transform transition-transform duration-300 z-50
             max-sm:fixed max-sm:top-16 max-sm:h-screen max-sm:w-full max-sm:border-t max-sm:p-4
@@ -123,7 +102,7 @@ const Navbar = () => {
 
       {/* Spacer to prevent content hiding behind fixed navbar */}
       <div className="h-20"></div>
-    </>
+    </motion.div>
   );
 };
 
