@@ -3,20 +3,42 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { assets, dummyCarData } from "../assets/assets";
 import Loader from "../components/Loader";
+import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
+
 
 const CarDetails = () => {
   const { id } = useParams();
+
+  const {cars, axios, pickupDate, setPickupDate, returnDate, setReturnDate} = useAppContext()
+
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
   const currency = import.meta.env.VITE_CURRENCY;
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/bookings/create", {
+        car: id,
+        pickupDate,
+        returnDate,
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        navigate("/my-bookings");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
   useEffect(() => {
-    setCar(dummyCarData.find((car) => car._id === id));
-  }, [id]);
+    setCar(cars.find((car) => car._id === id));
+  }, [cars, id]);
 
   return car ? (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 mt-16">
@@ -138,11 +160,14 @@ const CarDetails = () => {
               Pickup Date
             </label>
             <input
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
               type="date"
               id="pickup-date"
               required
               min={new Date().toISOString().split("T")[0]}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm shadow-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all duration-200"
+              className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm shadow-sm focus:ring-2
+               focus:ring-primary focus:outline-none transition-all duration-200"
             />
           </div>
 
@@ -155,6 +180,8 @@ const CarDetails = () => {
               Return Date
             </label>
             <input
+              value={returnDate}
+              onChange={(e) => setReturnDate(e.target.value)}
               type="date"
               id="return-date"
               required
