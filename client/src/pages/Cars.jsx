@@ -36,7 +36,6 @@ const Cars = () => {
         car.transmission.toLowerCase().includes(input.toLowerCase())
       );
     });
-
     setFilteredCars(filtered);
   };
 

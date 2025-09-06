@@ -21,15 +21,15 @@
 ## 🛠️ Tech Stack
 
 ### Frontend:
-- HTML, CSS, JavaScript
-- React / Vue / Vanilla JS (choose based on project setup)
-- Tailwind CSS or Bootstrap for styling
+- JavaScript
+- React 
+- Tailwind CSS 
 - Axios for API communication
 
 ### Backend:
 - Node.js with Express.js (or Laravel / Django)
-- MongoDB / MySQL / PostgreSQL for database
-- Mongoose / Sequelize ORM
+- MongoDB 
+- Mongoose 
 
 ### Other Tools:
 - JWT or OAuth for Authentication
@@ -46,3 +46,17 @@
 ```bash
 git clone https://github.com/shanedrasingh05/DriveNow.git
 cd drivenow
+npm install
+npm run dev
+
+```
+## Author
+
+Shanedra Singh \
+LinkedIn : https://www.linkedin.com/in/shanedrasingh05
+
+## Thank You
+
+Thank you for exploring DriveNow App! Your feedback is valuable. If you have any suggestions or thoughts, feel free to share them with us. 😊
+
+
