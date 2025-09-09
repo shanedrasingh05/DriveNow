@@ -27,7 +27,7 @@
 - Axios for API communication
 
 ### Backend:
-- Node.js with Express.js (or Laravel / Django)
+- Node.js with Express.js 
 - MongoDB 
 - Mongoose 
 
